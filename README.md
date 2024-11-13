@@ -49,3 +49,8 @@ Galaxy Swapper v2 is a free Fortnite skin changer built in WPF, enabling you to 
 ## 📜 **License**
 
 Galaxy Swapper v2 is licensed under the **GNU General Public License v3.0**.
+
+Tags:
+
+
+fortnite, fortnite skin swapper, galaxy swapper, fortnite galaxy swapper, skin changer, fortnite cosmetics, skin swap, fortnite mod, fortnite customization, fortnite cosmetics changer, fortnite tools, fortnite skins, fortnite aesthetic, fortnite appearance, fortnite modification
