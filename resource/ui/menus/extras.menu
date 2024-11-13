@@ -1,0 +1,416 @@
+resource/ui/menus/extras.menu
+{
+	menu
+	{
+		ControlName				Frame
+		xpos					0
+		ypos					0
+		zpos					3
+		wide					f0
+		tall					f0
+		autoResize				0
+		visible					1
+		enabled					1
+		pinCorner				0
+		PaintBackgroundType		0
+		infocus_bgcolor_override	"0 0 0 0"
+		outoffocus_bgcolor_override	"0 0 0 0"
+
+        Vignette
+        {
+            ControlName             ImagePanel
+            InheritProperties       MenuVignette
+        }
+
+		Title
+		{
+			ControlName				Label
+			InheritProperties		MenuTitle
+			labelText				"Extras"
+		}
+
+		ImgTopBar
+		{
+			ControlName				ImagePanel
+			InheritProperties		MenuTopBar
+		}
+
+		MatchmakingStatus
+		{
+			ControlName				CNestedPanel
+			xpos					0
+			ypos					0
+			wide					f0
+			tall					f0
+			visible					1
+			controlSettingsFile		"resource/ui/menus/panels/matchmaking_status.res"
+		}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		LblMenuItemDescription
+		{
+			ControlName				Label
+			InheritProperties		OptionMenuTooltip
+			classname 				MenuItemDescriptionClass
+			xpos					975
+			ypos					168
+		}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// Demos subheader
+		ImgGeneralSubheaderBackground
+		{
+			ControlName				ImagePanel
+			InheritProperties		SubheaderBackground
+			xpos					96
+			ypos					160
+		}
+		LblGeneralSubheaderText
+		{
+			ControlName				Label
+			InheritProperties		SubheaderText
+			pin_to_sibling			ImgGeneralSubheaderBackground
+			pin_corner_to_sibling	LEFT
+			pin_to_sibling_corner	LEFT
+			labelText				"Demos"
+		}
+
+		SwchEnableDemos
+		{
+			ControlName				RuiButton
+			InheritProperties		SwitchButton
+			xpos					-22
+			tabPosition				1
+			style					DialogListButton
+			navUp					SldCommandQue
+			navDown					SwchDemosWrite
+			ConVar					"demo_enabledemos"
+			list
+			{
+				"#SETTING_OFF"	0
+				"#SETTING_ON"	1
+			}
+			pin_to_sibling			ImgGeneralSubheaderBackground
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		SwchDemosWrite
+		{
+			ControlName				RuiButton
+			InheritProperties		SwitchButton
+			style					DialogListButton
+			navUp					SwchEnableDemos
+			navDown					SwchDemosInterpolate
+			ConVar					"demo_writeLocalFile"
+			list
+			{
+				"#SETTING_OFF"	0
+				"#SETTING_ON"	1
+			}
+
+			pin_to_sibling			SwchEnableDemos
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		SwchDemosInterpolate
+		{
+			ControlName				RuiButton
+			InheritProperties		SwitchButton
+			style					DialogListButton
+			navUp					SwchDemosWrite
+			navDown					SwchDemosUpdateRateSp
+			ConVar					"demo_interpolateview"
+			list
+			{
+				"#SETTING_OFF"	0
+				"#SETTING_ON"	1
+			}
+
+			pin_to_sibling			SwchDemosWrite
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		SwchDemosUpdateRateSp
+		{
+			ControlName				RuiButton
+			InheritProperties		SwitchButton
+			style					DialogListButton
+			navUp					SwchDemosInterpolate
+			navDown					SwchDemosUpdateRateMp
+			ConVar					"base_tickinterval_sp"
+			list
+			{
+				"20 FPS"	0.05
+				"60 FPS"	0.016666667
+				"100 FPS"	0.010000
+			}
+
+			pin_to_sibling			SwchDemosInterpolate
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		SwchDemosUpdateRateMp
+		{
+			ControlName				RuiButton
+			InheritProperties		SwitchButton
+			style					DialogListButton
+			navUp					SwchDemosUpdateRateMp
+			navDown					SwchDemosAutorecord
+			ConVar					"base_tickinterval_mp"
+			list
+			{
+				"20 FPS"	0.05
+				"60 FPS"	0.016666667
+				"100 FPS"	0.010000
+			}
+
+			pin_to_sibling			SwchDemosUpdateRateSp
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		SwchDemosAutorecord
+		{
+			ControlName				RuiButton
+			InheritProperties		SwitchButton
+			style					DialogListButton
+			navUp					SwchDemosUpdateRateMp
+			navDown					SwchThirdpersonFix
+			ConVar					"demo_autoRecord"
+			list
+			{
+				"#SETTING_OFF"	0
+				"#SETTING_ON"	1
+			}
+
+			pin_to_sibling			SwchDemosUpdateRateMp
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		SwchThirdpersonFix
+		{
+			ControlName				RuiButton
+			InheritProperties		SwitchButton
+			style					DialogListButton
+			navUp					SwchDemosAutorecord
+			navDown					BtnMouseKeyboardBindings
+			ConVar					"cl_pred_optimize"
+			list
+			{
+				"#SETTING_OFF"	0
+				"#SETTING_ON"	1
+			}
+
+			pin_to_sibling			SwchDemosAutorecord
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		// Mouse/Keyboard options
+		BtnMouseKeyboardBindings [!$GAMECONSOLE]
+		{
+			ControlName				RuiButton
+			InheritProperties		WideButton
+			pin_to_sibling			SwchThirdpersonFix
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+			ypos					30
+			navUp					SwchThirdpersonFix
+			navDown					SwchEnableWallrunning
+		}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// Extra Gameplay Options
+		ImgGameplaySubheaderBackground
+		{
+			ControlName				ImagePanel
+			InheritProperties		SubheaderBackground
+			xpos					96
+			ypos					530
+		}
+		LblGameplaySubheaderText
+		{
+			ControlName				Label
+			InheritProperties		SubheaderText
+			pin_to_sibling			ImgGameplaySubheaderBackground
+			pin_corner_to_sibling	LEFT
+			pin_to_sibling_corner	LEFT
+			labelText				"Gameplay"
+		}
+
+		SwchEnableWallrunning
+		{
+			ControlName				RuiButton
+			InheritProperties		SwitchButton
+			style					DialogListButton
+			xpos					-22
+			navUp					BtnMouseKeyboardBindings [!$GAMECONSOLE]
+			navDown					SwchEnableMantle
+			ConVar					"wallrun_enable"
+			list
+			{
+				"#SETTING_OFF"	0
+				"#SETTING_ON"	1
+			}
+
+			pin_to_sibling			ImgGameplaySubheaderBackground
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		SwchEnableMantle
+		{
+			ControlName				RuiButton
+			InheritProperties		SwitchButton
+			style					DialogListButton
+			navUp					SwchEnableWallrunning
+			navDown					SwchEnableVerticalDodge
+			ConVar					"automantle_enable"
+			list
+			{
+				"#SETTING_OFF"	0
+				"#SETTING_ON"	1
+			}
+
+			pin_to_sibling			SwchEnableWallrunning
+			pin_corner_to_sibling	TOP_LEFT
+		pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		SwchEnableVerticalDodge
+		{
+			ControlName				RuiButton
+			InheritProperties		SwitchButton
+			style					DialogListButton
+			navUp					SwchEnableMantle
+			navDown					SldPlayerDebounce
+			ConVar					"dodge_vertical_enable"
+			list
+			{
+				"#SETTING_OFF"	0
+				"#SETTING_ON"	1
+			}
+
+			pin_to_sibling			SwchEnableMantle
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		SldPlayerDebounce
+		{
+			ControlName				SliderControl
+			InheritProperties		SliderControl
+			navUp					SwchEnableVerticalDodge
+			navDown					SldCommandQue
+			conCommand					"player_respawnInputDebounceDuration"
+			minValue				0.0
+			maxValue				2.0
+			stepSize				0.1
+			inverseFill				0
+			BtnDropButton
+			{
+				ControlName				RuiButton
+				InheritProperties		WideButton
+				clip 					0
+				autoResize				1
+				pinCorner				0
+				visible					1
+				enabled					1
+				style					SliderButton
+				command					""
+			}
+
+			pin_to_sibling			SwchEnableVerticalDodge
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		SldCommandQue
+		{
+			ControlName				SliderControl
+			InheritProperties		SliderControl
+			navUp					SldPlayerDebounce
+			navDown					SwchEnableSpeedometer
+			conCommand					"sv_usercmd_max_queued"
+			minValue				10
+			maxValue				400
+			stepSize				10
+			inverseFill				0
+			BtnDropButton
+			{
+				ControlName				RuiButton
+				InheritProperties		WideButton
+				clip 					0
+				autoResize				1
+				pinCorner				0
+				visible					1
+				enabled					1
+				style					SliderButton
+				command					""
+			}
+
+			pin_to_sibling			SldPlayerDebounce
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+		SwchEnableSpeedometer
+		{
+			ControlName				RuiButton
+			InheritProperties		SwitchButton
+			style					DialogListButton
+			navUp					SldCommandQue
+			navDown					SwchEnableCommunities
+			ConVar					"password"
+			list
+			{
+				"#SETTING_OFF"	""
+				"Metric"	"metric"
+				"Imperial"	"imperial"
+			}
+
+			pin_to_sibling			SldCommandQue
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// Community Options
+		ImgCommunitySubheaderBackground
+		{
+			ControlName				ImagePanel
+			InheritProperties		SubheaderBackground
+			xpos					96
+			ypos					830
+		}
+		LblCommunitySubheaderText
+		{
+			ControlName				Label
+			InheritProperties		SubheaderText
+			pin_to_sibling			ImgCommunitySubheaderBackground
+			pin_corner_to_sibling	LEFT
+			pin_to_sibling_corner	LEFT
+			labelText				"Community"
+		}
+		SwchEnableCommunities
+		{
+			ControlName				RuiButton
+			InheritProperties		SwitchButton
+			style					DialogListButton
+			navUp					SwchEnableSpeedometer
+			navDown					SwchEnableDemos
+			ConVar					"communities_enabled"
+			list
+			{
+				"#SETTING_OFF"	0
+				"#SETTING_ON"	1
+			}
+
+			pin_to_sibling			ImgCommunitySubheaderBackground
+			pin_corner_to_sibling	TOP_LEFT
+			pin_to_sibling_corner	BOTTOM_LEFT
+		}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		FooterButtons
+		{
+			ControlName				CNestedPanel
+			InheritProperties       FooterButtons
+		}
+	}
+}

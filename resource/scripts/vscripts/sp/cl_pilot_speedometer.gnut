@@ -1,0 +1,55 @@
+global function ClPilotSpeedometer_Init
+
+struct
+{
+	var rui = null
+	bool useMetric
+} file
+
+void function ClPilotSpeedometer_Init()
+{
+	if ( GetConVarString( "password" ) == "metric" )
+	{
+		file.useMetric = true
+	}
+	else if ( GetConVarString( "password" ) == "imperial" )
+	{
+		file.useMetric = false
+	}
+	else
+	{
+		return
+	}
+
+	AddCreatePilotCockpitCallback( CreatePilotSpeedometer )
+}
+
+void function CreatePilotSpeedometer( entity cockpit, entity player )
+{
+	file.rui = CreateCockpitRui( $"ui/pilot_speedometer.rpak" )
+
+	RuiSetBool( file.rui, "useMetric", file.useMetric )
+	RuiSetGameTime( file.rui, "startTime", Time() )
+	RuiTrackFloat3( file.rui, "playerPos", player, RUI_TRACK_ABSORIGIN_FOLLOW )
+
+	player.EndSignal( "OnDeath" )
+	cockpit.EndSignal( "OnDestroy" )
+
+	OnThreadEnd(
+		function() : (  )
+		{
+			DestroyPilotSpeedometer()
+		}
+	)
+
+	WaitForever()
+}
+
+void function DestroyPilotSpeedometer()
+{
+	if ( file.rui == null )
+		return
+
+	RuiDestroyIfAlive( file.rui )
+	file.rui = null
+}
